@@ -6,6 +6,8 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
+    // 如果你部署到 https://qiaohan376.github.io/Resume/，base 必须是 '/Resume/'
+    base: process.env.NODE_ENV === 'production' ? '/Resume/' : '/', 
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
